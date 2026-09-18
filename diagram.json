@@ -1,0 +1,59 @@
+{
+  "version": 1,
+  "author": "Gustavo e Maykon",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "wokwi-esp32-devkit-v1", "id": "esp", "top": 0, "left": 0, "attrs": {} },
+    { "type": "wokwi-dht22", "id": "dht22", "top": -100, "left": 200, "attrs": {} },
+    {
+      "type": "wokwi-photoresistor-sensor",
+      "id": "ldr_light",
+      "top": 227,
+      "left": 249.6,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-relay-module",
+      "id": "relay_cooling",
+      "top": 125,
+      "left": 201.6,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-buzzer",
+      "id": "buzzer_alarm",
+      "top": 21.6,
+      "left": 347.4,
+      "attrs": { "volume": "0.1" }
+    },
+    {
+      "type": "wokwi-lcd1602",
+      "id": "lcd_status",
+      "top": -180,
+      "left": -260,
+      "attrs": { "pins": "i2c" }
+    }
+  ],
+  "connections": [
+    [ "esp:3V3", "dht22:VCC", "red", [] ],
+    [ "esp:GND.1", "dht22:GND", "black", [] ],
+    [ "esp:D15", "dht22:SDA", "green", [] ],
+
+    [ "esp:3V3.1", "ldr_light:VCC", "red", [] ],
+    [ "esp:GND.2", "ldr_light:GND", "black", [] ],
+    [ "esp:D34", "ldr_light:AO", "green", [ "h23.5", "v120" ] ],
+
+    [ "esp:5V", "relay_cooling:VCC", "red", [] ],
+    [ "esp:GND.3", "relay_cooling:GND", "black", [] ],
+    [ "esp:D26", "relay_cooling:IN", "orange", [] ],
+
+    [ "esp:D27", "buzzer_alarm:1", "orange", [] ],
+    [ "esp:GND.4", "buzzer_alarm:2", "black", [] ],
+
+    [ "esp:5V.1", "lcd_status:VCC", "red", [] ],
+    [ "esp:GND.5", "lcd_status:GND", "black", [] ],
+    [ "esp:D21", "lcd_status:SDA", "blue", [] ],
+    [ "esp:D22", "lcd_status:SCL", "yellow", [] ]
+  ],
+  "dependencies": {}
+}
